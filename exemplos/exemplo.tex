@@ -1,0 +1,22 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+
+
+\newcommand{\VAR}[1]{}
+\newcommand{\BLOCK}[1]{}
+
+\begin{document}
+\#{ Isso é um comentário dentro do Template e não será renderizado }
+\section{Iterando}
+\begin{itemize}
+%>>> for i in range(10)
+    \item \VAR{i**2-1}
+%>>> endfor 
+\end{itemize}
+
+\#{ Podemos incluir outros arquivos para tornar o modelo mais modularizado }
+%>>> include 'include_exemplo.tex'
+ 
+\end{document}

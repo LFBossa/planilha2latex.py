@@ -1,0 +1,13 @@
+%>>> for x in Apresentacoes
+\#{ podemos tratar datas com a formatação que quisermos }
+\subsection{ \VAR{data(x.Data/1000, "%b, %d")} }
+%>>> for y in x.Autores.split(",")
+ \textbf{\VAR{y}} 
+%>>> endfor 
+
+\VAR{x.Textao}
+
+
+\VAR{x.Inteiro} 
+
+%>>> endfor
