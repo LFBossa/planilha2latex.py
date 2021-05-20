@@ -4,9 +4,8 @@ from jinja2 import Template
 from datetime import date
 from pathlib import Path
 
-def data(numero, formato="%d/%m/%Y"):
-    data = date.fromtimestamp(numero)
-    return data.strftime(formato)
+def data(datetime, formato="%d/%m/%Y"): 
+    return datetime.strftime(formato)
 
 EXTRA_FUNCTIONS = {"data": data } 
 
@@ -53,3 +52,4 @@ def processa_template(filename, dicionario, output = None):
 
     with open(output, "w") as fp:
         fp.write(renderizado)  
+
