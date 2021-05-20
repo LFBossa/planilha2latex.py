@@ -15,7 +15,7 @@ import datetime as dt
 # Funções auxiliares para tratar os dados conforme o tipo
 def converte_data(timestamp):
     if isinstance(timestamp, pd.Timestamp):
-        return timestamp
+        return timestamp.to_pydatetime()
     else:
         epoch = timestamp/1e3 if timestamp > 1e9 else timestamp
         return dt.datetime.fromtimestamp(epoch)
@@ -55,7 +55,6 @@ def planilha2pandas(filename):
     for folha in planilha.sheetnames:
         # cada folha vira um DataFrame
         df = pd.read_excel(filename, sheet_name=folha, engine="openpyxl")
-        print(df.dtypes)
         colunas_remover = [x for x in df.columns if 'Unnamed' in x]
         # cada coluna que se chama Unnamed blablabla
         df.drop(labels=colunas_remover, axis=1, inplace=True)
@@ -83,9 +82,11 @@ def process_df(df):
     return df
 
 def preprocess_pandas_dict(pandas_dict):
+    new_dict = {}
     for key, value in pandas_dict.items():
-        pandas_dict[key] = process_df(value)
-    return pandas_dict
+        newdf = process_df(value)
+        new_dict[key] = newdf.to_dict(orient="records")
+    return new_dict
 
 
 
@@ -100,3 +101,4 @@ if __name__ == '__main__':
     dicio = planilha2pandas("exemplos/planilha_exemplo.xlsx")
     df = dicio["Apresentacoes"]
     print(df.head(1).applymap(type).to_dict())
+    print(planilha2dicionario("exemplos/planilha_exemplo.xlsx"))
