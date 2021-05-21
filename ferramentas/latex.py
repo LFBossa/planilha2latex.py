@@ -46,7 +46,8 @@ def processa_template(filename, dicionario, output = None):
     """Abre um template, preenche com os dados de dicionario e salva no arquivo output"""
     if not output:
         full_caminho = Path(filename)
-        output = full_caminho.parent / ("compilado_" + full_caminho.name)
+        novo_nome = full_caminho.stem + "_compilado" + full_caminho.suffix
+        output = full_caminho.parent / novo_nome
     
     renderizado = render_template(filename, dicionario)
 
