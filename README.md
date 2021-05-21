@@ -63,3 +63,17 @@ seguinte maneira
 \BLOCK{ endfor } 
 % fecha o bloco for
 ```
+
+## Referências
+
+* [Latex generator using Jinja](https://manu.hbrt.eu/latex-generator-using-jinja.html)
+* [Combining LATEX with Python](https://tug.org/tug2019/slides/slides-ziegenhagen-python.pdf)
+* [Latex with Jinja2](https://miller-blog.com/latex-with-jinja2/)
+
+TODO
+
+* [x] Converter a planilha em dicionário
+* [x] Ler um arquivo LaTeX com tags e alimentar com dados do dicionário
+* [x] Ferramenta de linha de comando para compilar templates
+* [ ] Feramenta para compilar o tex gerado 
+* [ ] Filtros e funções extra para datas no Jinja Environment
