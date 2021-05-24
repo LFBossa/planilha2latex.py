@@ -3,6 +3,8 @@ import os
 from jinja2 import Template
 from datetime import date
 from pathlib import Path
+import locale
+locale.setlocale(locale.LC_TIME, "pt_BR.utf8")
 
 def data(datetime, formato="%d/%m/%Y"): 
     return datetime.strftime(formato)
