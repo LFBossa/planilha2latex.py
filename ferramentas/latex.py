@@ -31,6 +31,7 @@ def create_environment(template_path):
     #for key, value in EXTRA_FUNCTIONS.items():
     #    latex_jinja_env.globals[key] = value
     #print(caminhos)
+    #    latex_jinja_env.filters
     return latex_jinja_env
 
 
