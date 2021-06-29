@@ -32,13 +32,15 @@ MAPA_DATAHORA_EXTRA = {
 
 def map_to_strf(texto):
     for key, val in MAPA_DATAHORA.items():
-        texto = texto.replace(key, val)
+        if key in texto:
+            texto = texto.replace(key, val)
     return texto
 
 def formato(datetime, fmt="%x"): 
     strfmt = map_to_strf(fmt)
     for key, val in MAPA_DATAHORA_EXTRA.items():
-        strfmt = strfmt.replace(key, val(datetime))
+        if key in strfmt:
+            strfmt = strfmt.replace(key, val(datetime))
     return datetime.strftime(strfmt)
 
 def teste1():
