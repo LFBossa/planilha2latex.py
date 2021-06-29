@@ -64,6 +64,42 @@ seguinte maneira
 % fecha o bloco for
 ```
 
+## Formato de data e hora
+
+Para uma variável do tipo `data` ou do tipo `hora`, podemos aplicar um filtro para imprimir 
+seu valor da maneira desejada. Por exemplo, se tivemos variável `x = datetime.datetime(2021,6,29)`, podemos aplicar o filtro `formato` para imprimir essa data por extenso
+```latex
+\VAR{ x | formato("Dia, DD  de mês de AAAA")}
+```
+resultando no valor impresso 
+```latex
+Terça, 29 de junho de 2021
+```
+
+### Tabela de conversão para data e hora
+
+O filtro `formato` recebe chaves que serão substituidas pelos respectivos valores da data passada.
+
+| Chave | Conversão | Exemplo | 
+|:-----:| ----------| ------- | 
+| DD | Dia do mês, dois dígitos com zeros à esquerda. | 01, 02, 03, ..., 31 |
+| D | Dia do mês, numérico sem zeros à esquerda. | 1, 2 , 3, ... , 31 |
+| MM | Mês, dois dígitos com zeros a esquerda. | 01, 02, ... , 12 |
+| mmm | Mês, abreviado para três letras em minúsculo. | jan, fev, ..., dez |
+| mês | Mês, completo com letras em minúsculo. |  janeiro, fevereiro, ..., dezembro |
+| Mês | Mês, completo com inicial maiúscula. | Janeiro, Fevereiro, ..., Dezembro |
+| AA | Ano, dois dígitos numéricos. | 99, 00, 01, ..., 21 |
+| AAAA | Ano, quatro dígitos numéricos. | 1999, 2000,..., 2021 |
+| ds | Dia da semana, três letras em minúsculo. | seg, ter, ..., dom |
+| Ds | Dia da semana, três letras, inicial maiúscula. | Seg, Ter, ..., Dom |
+| dia | Dia da semana, somente um nome em minúsculas. | segunda, terça, ..., domingo |
+| Dia | Dia da semana, somente um nome, inicial maiúscula. | Segunda, Terça, ..., Domingo |
+| dia-feira | Dia da semana, completo. | segunda-feira, ..., domingo |
+| Dia-feira | Dia da semana, completo, inicial maiúscula. | Segunda-feira, ..., Domingo |
+| HH | Hora, dois dígitos, formato 24h. | 00, 01, ..., 23 |
+| mm | Minutos, dois dígitos. | 00, 01, ..., 59 | 
+
+
 ## Referências
 
 * [Latex generator using Jinja](https://manu.hbrt.eu/latex-generator-using-jinja.html)
@@ -76,4 +112,4 @@ TODO
 * [x] Ler um arquivo LaTeX com tags e alimentar com dados do dicionário
 * [x] Ferramenta de linha de comando para compilar templates
 * [ ] Feramenta para compilar o tex gerado 
-* [ ] Filtros e funções extra para datas no Jinja Environment
+* [x] Filtros e funções extra para datas no Jinja Environment
