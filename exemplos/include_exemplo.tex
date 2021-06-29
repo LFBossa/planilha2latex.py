@@ -1,10 +1,11 @@
 %>>> for x in Apresentacoes
-\VAR{(x)}
+
 \#{ podemos tratar datas com a formatação que quisermos }
-\subsection{ \VAR{x.Data.strftime("%B, %d")} }
+\subsection{\VAR{x.Data | formato("Dia, DD  de mês de AAAA") }}
 %>>> for y in x.Autores 
  \textbf{\VAR{y}} 
 %>>> endfor 
+\textit{\VAR{x.Horario | formato("HHhmm") }}
 
 \VAR{x.Textao}
 
