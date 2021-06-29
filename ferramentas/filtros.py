@@ -17,10 +17,12 @@ MAPA_DATAHORA = {
 
 _Ds =  lambda x: x.strftime("%a").capitalize()
 _Dia = lambda x: x.strftime("%A").capitalize()
+_Mes = lambda x: x.strftime("%B").capitalize()
 _Diafeira = lambda x: _Dia(x)+"-feira" if x.weekday() < 5 else _Dia(x)
 _diafeira = lambda x: _Diafeira(x).lower()
 
 MAPA_DATAHORA_EXTRA = {
+    "Mês": _Mes,
     "Ds": _Ds,
     "Dia-feira": _Diafeira, 
     "Dia": _Dia,
@@ -33,8 +35,11 @@ def map_to_strf(texto):
         texto = texto.replace(key, val)
     return texto
 
-def data(datetime, fmt="%d/%m/%Y"): 
-    return datetime.strftime(fmt)
+def formato(datetime, fmt="%x"): 
+    strfmt = map_to_strf(fmt)
+    for key, val in MAPA_DATAHORA_EXTRA.items():
+        strfmt = strfmt.replace(key, val(datetime))
+    return datetime.strftime(strfmt)
 
 def teste1():
     texto1 = "ds, DD de mmm de AAAA"
@@ -42,8 +47,8 @@ def teste1():
     assert saida1 == "%a, %d de %b de %Y"
 
 if __name__ == '__main__':
-    texto = "ds, DD de mmm de AAAA"
-    formato = map_to_strf(texto)
-    print(formato)
-    print(data(date.today(),formato))
+    texto = "Dia-feira, DD de Mês de AAAA (HHhmm)"
+    fmt = map_to_strf(texto)
+    print(fmt)
+    print(formato(datetime.now(),fmt))
     teste1()
