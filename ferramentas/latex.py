@@ -6,10 +6,9 @@ from pathlib import Path
 import locale
 locale.setlocale(locale.LC_TIME, "pt_BR.utf8")
 
-def data(datetime, formato="%d/%m/%Y"): 
-    return datetime.strftime(formato)
+from .filtros import formato 
 
-EXTRA_FUNCTIONS = {"data": data } 
+EXTRA_FUNCTIONS = { } 
 
 def create_environment(template_path):
     template_dir = Path(template_path).parent.absolute()
@@ -28,10 +27,7 @@ def create_environment(template_path):
         autoescape = False,
         loader = jinja2.FileSystemLoader(caminhos),
     )
-    #for key, value in EXTRA_FUNCTIONS.items():
-    #    latex_jinja_env.globals[key] = value
-    #print(caminhos)
-    #    latex_jinja_env.filters
+    latex_jinja_env.filters["formato"] = formato
     return latex_jinja_env
 
 
