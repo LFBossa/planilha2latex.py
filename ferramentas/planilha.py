@@ -39,6 +39,7 @@ def converte_numero(numero):
 
 # mapeia o tipo do dado com a conversão necessária
 MAPEAMENTO = {"data": converte_data,
+              "datahora": converte_data,
               "hora": converte_hora,
               "numero": converte_numero,
               "lista": converte_lista}
