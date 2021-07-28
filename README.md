@@ -64,7 +64,19 @@ seguinte maneira
 % fecha o bloco for
 ```
 
-## Formato de data e hora
+## Tipos de valores
+
+Estabeleci os seguintes nomes para os tipos de valor
+
+| Nome | Descrição |
+| ---- | --------- | 
+| data | Representa uma data |
+| hora | Representa uma hora |
+| datahora | Representa um horário de uma data específica |
+| numero | Valor de ponto flutuante | 
+| lista | Lista de valores separados por vírgula |
+
+## Imprimindo valores de data e hora
 
 Para uma variável do tipo `data` ou do tipo `hora`, podemos aplicar um filtro para imprimir 
 seu valor da maneira desejada. Por exemplo, se tivemos variável `x = datetime.datetime(2021,6,29)`, podemos aplicar o filtro `formato` para imprimir essa data por extenso
