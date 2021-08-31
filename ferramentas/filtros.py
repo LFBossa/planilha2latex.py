@@ -45,6 +45,22 @@ def formato(datetime, fmt="%x"):
             strfmt = strfmt.replace(key, func(datetime))
     return datetime.strftime(strfmt)
 
+def tags_unicas(lista):
+    """Retorna um dicionário no formato {n: string} com as ocorrências únicas 
+    das strings na lista. """
+    i = 1
+    dicio = dict()
+    for val in lista:
+        if val not in dicio:
+            dicio[val] = i
+            i = i + 1
+    return dicio
+
+def lista_tags(lista):  
+    """Retorna uma lista de pares ordenados (tag, string) para cada string em lista."""
+    dicionario = tags_unicas(lista)
+    return [(v,dicionario[v]) for v in lista]
+
 def teste1():
     texto1 = "ds, DD de mmm de AAAA"
     saida1 = map_to_strf(texto1)
@@ -56,3 +72,4 @@ if __name__ == '__main__':
     print(fmt)
     print(formato(datetime.now(),fmt))
     teste1()
+    print(lista_tags(["Luiz", "Fernando", "Bossa", "Bossa"]))
