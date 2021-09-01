@@ -1,5 +1,6 @@
 from datetime import date, time, datetime
-import locale 
+import locale
+from os import posix_fadvise 
 locale.setlocale(locale.LC_TIME, "pt_BR.utf8")
 
 MAPA_DATAHORA = {
@@ -66,6 +67,37 @@ def teste1():
     saida1 = map_to_strf(texto1)
     assert saida1 == "%a, %d de %b de %Y"
 
+def processa_lista(lista, formato):
+    """Recebe uma lista e coloca dentro de uma string de formato. 
+        - @A representa o primeiro item da lista 
+        - @Z representa o ultimo item da lista 
+        - @X  @Y representam itens genéricos da lista, e o conteúdo entre eles
+        será repetido como ligação entre os itens da lista.
+        
+        Exemplo: 
+        lista = ['1', 'B', 'C', 'D', 'E']
+        fmt = "(@A): @X, @Y & @Z"
+        processa_lista(lista, fmt) -> "(1): B, C, D & E"
+        """
+    #iVAR -> indice Variavel
+    #cVAR -> conteudo 
+    dados = lista.copy()
+    iA = formato.find("@A")
+    iZ = formato.find("@Z")
+    if iA >= 0:
+        cA = dados.pop(0)
+        formato = formato.replace("@A", cA)
+    if iZ >= 0:
+        cZ = dados.pop(-1)
+        formato = formato.replace("@Z", cZ)
+
+    iX = formato.find("@X")
+    iY = formato.find("@Y")
+    ligante = formato[iX+2:iY]  # tudo o que estiver entre @X e @Y
+    texto = ligante.join(dados) # vai ser repetido ligando os termos da lista
+    completo = formato[:iX] + texto + formato[iY+2:]
+    return completo
+
 if __name__ == '__main__':
     texto = "Dia, DD de mês de AAAA (HHhmm)"
     fmt = map_to_strf(texto)
@@ -73,3 +105,4 @@ if __name__ == '__main__':
     print(formato(datetime.now(),fmt))
     teste1()
     print(lista_tags(["Luiz", "Fernando", "Bossa", "Bossa"]))
+    print(processa_lista("A,B,C,D,E".split(","), "(@A): @X, @Y & @Z"))
