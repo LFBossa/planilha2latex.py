@@ -98,6 +98,12 @@ def processa_lista(lista, formato):
     completo = formato[:iX] + texto + formato[iY+2:]
     return completo
 
+def latexfy(string):
+    try:
+        return string.replace("_", "\\_").replace("&", "\&")
+    except:
+        return string
+
 if __name__ == '__main__':
     texto = "Dia, DD de mês de AAAA (HHhmm)"
     fmt = map_to_strf(texto)
