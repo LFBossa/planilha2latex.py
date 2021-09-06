@@ -6,7 +6,7 @@ from pathlib import Path
 import locale
 locale.setlocale(locale.LC_TIME, "pt_BR.utf8")
 
-from .filtros import formato, lista_tags, tags_unicas
+from .filtros import formato, lista_tags, tags_unicas, processa_lista, latexfy
 
 EXTRA_FUNCTIONS = { } 
 
@@ -27,7 +27,8 @@ def create_environment(template_path):
         autoescape = False,
         loader = jinja2.FileSystemLoader(caminhos),
     )
-    FILTROS = {"formato": formato, "lista_tags": lista_tags, "tags_unicas": tags_unicas }
+    FILTROS = {"formato": formato, "lista_tags": lista_tags, 
+                "tags_unicas": tags_unicas, "listas": processa_lista, "latexfy": latexfy }
     for key, val in FILTROS.items():
         latex_jinja_env.filters[key] = val
     
