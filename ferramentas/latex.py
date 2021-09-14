@@ -1,14 +1,14 @@
 import jinja2
 import os
 from jinja2 import Template
-from datetime import date
+from datetime import date, time, timedelta, datetime
 from pathlib import Path
 import locale
 locale.setlocale(locale.LC_TIME, "pt_BR.utf8")
 
 from .filtros import formato, lista_tags, tags_unicas, processa_lista, latexfy
 
-EXTRA_FUNCTIONS = { } 
+EXTRA_FUNCTIONS = {"data": date, "hora": time, "datahora": datetime, "delta": timedelta } 
 
 def create_environment(template_path):
     template_dir = Path(template_path).parent.absolute()
